@@ -5,6 +5,13 @@ from torch.utils.data import DataLoader
 
 
 class FedNovaClient(FedClient):
+    '''
+    FedNova
+
+        an adaptive optimization algorithm that aims to address the straggler effect in federated learning. 
+        It dynamically adjusts the learning rate for each client based on their local training progress, 
+        giving more weight to faster clients and reducing the impact of slow clients.
+    '''
     def __init__(self, name, epoch, dataset_id, model_name):
         super().__init__(name, epoch, dataset_id, model_name)
         self.rho = 0.9

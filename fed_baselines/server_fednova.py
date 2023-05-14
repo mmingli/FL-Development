@@ -3,6 +3,13 @@ import copy
 
 
 class FedNovaServer(FedServer):
+    '''
+    FedNova
+
+        an adaptive optimization algorithm that aims to address the straggler effect in federated learning. 
+        It dynamically adjusts the learning rate for each client based on their local training progress, 
+        giving more weight to faster clients and reducing the impact of slow clients.
+    '''
     def __init__(self, client_list, dataset_id, model_name):
         super().__init__(client_list, dataset_id, model_name)
         # Normalized coefficient
