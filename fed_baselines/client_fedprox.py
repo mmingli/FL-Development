@@ -13,7 +13,8 @@ class FedProxClient(FedClient):
     def train(self):
         """
         Client trains the model on local dataset using FedProx
-        :return: Local updated model, number of local data points, training loss
+            
+            return: Local updated model, number of local data points, training loss
         """
         train_loader = DataLoader(self.trainset, batch_size=self._batch_size, shuffle=True)
 
@@ -41,9 +42,9 @@ class FedProxClient(FedClient):
 
                     '''
                     FedProx:
-                    introduces a regularization term to the objective function during model aggregation. 
-                    This term penalizes the difference between the local model and the global model to encourage closer alignment between them. 
-                    It aims to reduce the effect of client data heterogeneity and improve convergence speed.
+                        introduces a regularization term to the objective function during model aggregation. 
+                        This term penalizes the difference between the local model and the global model to encourage closer alignment between them. 
+                        It aims to reduce the effect of client data heterogeneity and improve convergence speed.
                     '''
                     prox_term = 0.0
                     for p_i, param in enumerate(self.model.parameters()):

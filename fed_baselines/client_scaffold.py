@@ -17,8 +17,9 @@ class ScaffoldClient(FedClient):
     def update(self, model_state_dict, scv_state):
         """
         SCAFFOLD client updates local models and server control variate
-        :param model_state_dict:
-        :param scv_state:
+            
+            param model_state_dict:
+            param scv_state:
         """
         self.model = init_model(model_name=self.model_name, num_class=self._num_class, image_channel=self._image_channel)
         self.model.load_state_dict(model_state_dict)
@@ -28,7 +29,8 @@ class ScaffoldClient(FedClient):
     def train(self):
         """
         Client trains the model on local dataset using SCAFFOLD
-        :return: Local updated model, number of local data points, training loss, updated client control variate
+            
+            return: Local updated model, number of local data points, training loss, updated client control variate
         """
         train_loader = DataLoader(self.trainset, batch_size=self._batch_size, shuffle=True)
 

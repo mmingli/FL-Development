@@ -4,10 +4,11 @@ from utils.models import *
 def assign_dataset(dataset_name):
     """
     Assign the parameters to a dataset
-    :param dataset_name: Dataset name
-    :return: num_class: Number of classes in the dataset
-    :return: image_dim: Image dimensions
-    :return: image_channel: Number of image channels
+        
+        param dataset_name: Dataset name
+        return: num_class: Number of classes in the dataset
+        return: image_dim: Image dimensions
+        return: image_channel: Number of image channels
     """
     num_class = -1
     image_dim = -1
@@ -58,10 +59,11 @@ def assign_dataset(dataset_name):
 def init_model(model_name, num_class, image_channel):
     """
     Initialize the model for a specific learning task.
-    :param model_name: Model name
-    :param num_class: Number of classes in the dataset
-    :param image_channel: Number of image channels
-    :return: The initialized model
+        
+        param model_name: Model name
+        param num_class: Number of classes in the dataset
+        param image_channel: Number of image channels
+        return: The initialized model
     """
     model = None
     if model_name == "ResNet18":

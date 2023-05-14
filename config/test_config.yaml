@@ -3,7 +3,7 @@ system:
   num_local_class: 2
   dataset: "MNIST"
   model: "LeNet"
-  i_seed: 235235
+  i_seed: 233333
   num_round: 2000
   res_root: "results"
 

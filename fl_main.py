@@ -38,7 +38,8 @@ def as_python_object(dct):
 def fed_args():
     """
     Arguments for running federated learning baselines
-    :return: Arguments for federated learning baselines
+        
+        return: Arguments for federated learning baselines
     """
     parser = argparse.ArgumentParser()
 

@@ -13,7 +13,8 @@ class FedNovaClient(FedClient):
     def train(self):
         """
         Client trains the model on local dataset using FedNova
-        :return: Local updated model, number of local data points, training loss, normalization coefficient, normalized gradients
+        
+            return: Local updated model, number of local data points, training loss, normalization coefficient, normalized gradients
         """
         train_loader = DataLoader(self.trainset, batch_size=self._batch_size, shuffle=True)
 

@@ -1,3 +1,9 @@
+import sys
+import os
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
+)
+
 from utils.models import *
 from torch.utils.data import DataLoader
 from utils.fed_utils import assign_dataset, init_model
@@ -6,11 +12,12 @@ from utils.fed_utils import assign_dataset, init_model
 class FedClient(object):
     def __init__(self, name, epoch, dataset_id, model_name):
         """
-        Initialize the client k for federated learning.
-        :param name: Name of the client k
-        :param epoch: Number of local training epochs in the client k
-        :param dataset_id: Local dataset in the client k
-        :param model_name: Local model in the client k
+        Initialize the client k for federated learning
+
+            param name: Name of the client k
+            param epoch: Number of local training epochs in the client k
+            param dataset_id: Local dataset in the client k
+            param model_name: Local model in the client k
         """
         # Initialize the metadata in the local client
         self.target_ip = '127.0.0.3'
@@ -43,16 +50,18 @@ class FedClient(object):
 
     def load_trainset(self, trainset):
         """
-        Client loads the training dataset.
-        :param trainset: Dataset for training.
+        Client loads the training dataset
+
+            param trainset: Dataset for training.
         """
         self.trainset = trainset
         self.n_data = len(trainset)
 
     def update(self, model_state_dict):
         """
-        Client updates the model from the server.
-        :param model_state_dict: Global model.
+        Client updates the model from the server
+
+            param model_state_dict: Global model.
         """
         self.model = init_model(model_name=self.model_name, num_class=self._num_class, image_channel=self._image_channel)
         self.model.load_state_dict(model_state_dict)
@@ -60,7 +69,8 @@ class FedClient(object):
     def train(self):
         """
         Client trains the model on local dataset
-        :return: Local updated model, number of local data points, training loss
+
+            return: Local updated model, number of local data points, training loss
         """
         train_loader = DataLoader(self.trainset, batch_size=self._batch_size, shuffle=True)
 

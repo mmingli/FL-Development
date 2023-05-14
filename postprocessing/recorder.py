@@ -29,8 +29,9 @@ class Recorder(object):
     def load(self, filename, label):
         """
         Load the result files
-        :param filename: Name of the result file
-        :param label: Label for the result file
+            
+            param filename: Name of the result file
+            param label: Label for the result file
         """
         with open(filename) as json_file:
             res = json.load(json_file, object_hook=as_python_object)

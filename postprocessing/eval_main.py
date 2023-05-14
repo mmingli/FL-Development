@@ -8,7 +8,8 @@ from recorder import Recorder
 def fed_args():
     """
     Arguments for running postprocessing on FedD3
-    :return: Arguments for postprocessing on FedD3
+        
+        return: Arguments for postprocessing on FedD3
     """
     parser = argparse.ArgumentParser()
 

@@ -15,9 +15,10 @@ class FedServer(object):
     def __init__(self, client_list, dataset_id, model_name):
         """
         Initialize the server for federated learning.
-        :param client_list: List of the connected clients in networks
-        :param dataset_id: Dataset name for the application scenario
-        :param model_name: Machine learning model name for the application scenario
+            
+            param client_list: List of the connected clients in networks
+            param dataset_id: Dataset name for the application scenario
+            param model_name: Machine learning model name for the application scenario
         """
         # Initialize the dict and list for system settings
         self.client_state = {}
@@ -48,14 +49,16 @@ class FedServer(object):
     def load_testset(self, testset):
         """
         Server loads the test dataset.
-        :param data: Dataset for testing.
+            
+            param data: Dataset for testing.
         """
         self.testset = testset
 
     def state_dict(self):
         """
         Server returns global model dict.
-        :return: Global model dict
+            
+            return: Global model dict
         """
         return self.model.state_dict()
 
@@ -81,7 +84,8 @@ class FedServer(object):
     def select_clients(self, connection_ratio=1):
         """
         Server selects a fraction of clients.
-        :param connection_ratio: connection ratio in the clients
+            
+            param connection_ratio: connection ratio in the clients
         """
         # select a fraction of clients
         self.selected_clients = []
@@ -94,9 +98,10 @@ class FedServer(object):
     def agg(self):
         """
         Server aggregates models from connected clients.
-        :return: model_state: Updated global model after aggregation
-        :return: avg_loss: Averaged loss value
-        :return: n_data: Number of the local data points
+            
+            return: model_state: Updated global model after aggregation
+            return: avg_loss: Averaged loss value
+            return: n_data: Number of the local data points
         """
         client_num = len(self.selected_clients)
         if client_num == 0 or self.n_data == 0:
@@ -129,10 +134,11 @@ class FedServer(object):
     def rec(self, name, state_dict, n_data, loss):
         """
         Server receives the local updates from the connected client k.
-        :param name: Name of client k
-        :param state_dict: Model dict from the client k
-        :param n_data: Number of local data points in the client k
-        :param loss: Loss of local training in the client k
+            
+            param name: Name of client k
+            param state_dict: Model dict from the client k
+            param n_data: Number of local data points in the client k
+            param loss: Loss of local training in the client k
         """
         self.n_data = self.n_data + n_data  # accumulate the number of local data points from all clients
         self.client_state[name] = {}  # initialize the dict for the client k

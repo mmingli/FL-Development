@@ -13,7 +13,8 @@ class FedNovaServer(FedServer):
     def agg(self):
         """
         Server aggregates normalized models from connected clients using FedNova
-        :return: Updated global model after aggregation, Averaged loss value, Number of the local data points
+            
+            return: Updated global model after aggregation, Averaged loss value, Number of the local data points
         """
         client_num = len(self.selected_clients)
         if client_num == 0 or self.n_data == 0:
@@ -46,12 +47,13 @@ class FedNovaServer(FedServer):
     def rec(self, name, state_dict, n_data, loss, coeff, norm_grad):
         """
         Server receives the local updates from the connected client k.
-        :param name: Name of client k
-        :param state_dict: Model dict from the client k
-        :param n_data: Number of local data points in the client k
-        :param loss: Loss of local training in the client k
-        :param coeff: Normalization coefficient
-        :param norm_grad: Normalized gradients
+            
+            param name: Name of client k
+            param state_dict: Model dict from the client k
+            param n_data: Number of local data points in the client k
+            param loss: Loss of local training in the client k
+            param coeff: Normalization coefficient
+            param norm_grad: Normalized gradients
         """
         self.n_data = self.n_data + n_data
         self.client_state[name] = {}

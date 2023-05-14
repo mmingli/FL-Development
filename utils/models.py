@@ -6,7 +6,7 @@ import numpy as np
 from collections import OrderedDict
 
 """
-We provide the models, which might be used in the experiments on FedD3, as follows:
+We support the following models:
     - AlexNet model customized for CIFAR-10 (AlexCifarNet) with 1756426 parameters
     - LeNet model customized for MNIST with 61706 parameters
     - Further ResNet models
