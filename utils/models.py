@@ -166,6 +166,47 @@ class CNN(nn.Module):
         return output
 
 
+
+class UNet(nn.Module):
+    def __init__(self):
+        super(UNet, self).__init__()
+
+        def conv_block(in_channels, out_channels):
+            return nn.Sequential(
+                nn.Conv2d(in_channels, out_channels, 3, padding=1),
+                nn.ReLU(inplace=True),
+                nn.Conv2d(out_channels, out_channels, 3, padding=1),
+                nn.ReLU(inplace=True)
+            )
+
+        self.encoder1 = conv_block(1, 64)
+        self.encoder2 = conv_block(64, 128)
+        self.encoder3 = conv_block(128, 256)
+        self.encoder4 = conv_block(256, 512)
+
+        self.pool = nn.MaxPool2d(2)
+        self.up = nn.ConvTranspose2d(512, 512, kernel_size=2, stride=2)
+
+        self.decoder3 = conv_block(256 + 512, 256)
+        self.decoder2 = conv_block(128 + 256, 128)
+        self.decoder1 = conv_block(128 + 64, 64)
+        
+        self.final_conv = nn.Conv2d(64, 1, 1)
+
+    def forward(self, x):
+        enc1 = self.encoder1(x)
+        enc2 = self.encoder2(self.pool(enc1))
+        enc3 = self.encoder3(self.pool(enc2))
+        enc4 = self.encoder4(self.pool(enc3))
+
+        dec3 = self.decoder3(torch.cat([self.up(enc4), enc3], dim=1))
+        dec2 = self.decoder2(torch.cat([self.up(dec3), enc2], dim=1))
+        dec1 = self.decoder1(torch.cat([self.up(dec2), enc1], dim=1))
+
+        return self.final_conv(dec1)
+
+
+
 if __name__ == "__main__":
     model_name_list = ["ResNet18", "ResNet34", "ResNet50", "ResNet101", "ResNet152"]
     for model_name in model_name_list:
@@ -178,3 +219,9 @@ if __name__ == "__main__":
         # another way to calculate the model size
         size = sum(p.numel() for p in model.parameters() if p.requires_grad) / 1_024**2
         print(f"Model size: {size:.3f} MB")
+
+    # model = UNet()
+    # size = sum(p.numel() for p in model.parameters() if p.requires_grad) / 1_024**2
+    # logits_size = sum(p.numel() for name, p in model.named_parameters() if name.startswith('final_conv') and p.requires_grad) / 1_024**2
+    # print(f"Model size: {size:.3f} MB")
+    # print(f"logits size: {size:.3f} MB")

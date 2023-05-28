@@ -1,2 +1,3 @@
-# Federated Learning boilerplate code in PyTorch
+# Federated Learning in PyTorch
 
+In progress...
