@@ -81,7 +81,7 @@ This part aims to divide the entire datasets into Non-IID datasets according to 
 
 ```shell
 # partition the MedMNIST dataset into 10 clients according to Dirichlet distribution with alpha=0.1
-python generate_data.py -d cifar10 -a 0.1 -cn 10
+python generate_data.py -d medmnistS -a 0.1 -cn 10
 ```
 
 
@@ -90,7 +90,7 @@ python generate_data.py -d cifar10 -a 0.1 -cn 10
 
 ```shell
 # run FedAvg simulation on MedMNIST dataset
-python fedavg.py -d cifar10
+python fedavg.py -d medmnistS
 ```
 
 - `Note`: ALL the methods are inherited from `FedAvgServer` and `FedAvgClient`.
