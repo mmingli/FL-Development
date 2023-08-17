@@ -1,4 +1,4 @@
-system:
+server:
   num_client: 100
   num_local_class: 2
   dataset: "MNIST"
