@@ -1,4 +1,4 @@
-# Federated Learning in PyTorch
+# FL-Development
 
 <h4 align="center"><i>This is a repo for implementing federated learning (FL) simulation studies in healthcare.</i></h4>
 
